@@ -1,0 +1,186 @@
+<!-- gallery/templates/gallery/add_gallery.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Image to Gallery</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional: Add custom CSS for animations or extra styling -->
+    <style>
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 30px;
+            background-color: #18665e;
+            color: white;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin: 0px auto;
+            max-width: 1700px;
+            transition: all 0.3s ease;
+            position: relative;
+          }
+          .navbar-left,
+          .navbar-right {
+            display: flex;
+            align-items: center;
+          }
+      
+          /* Centered title */
+          .navbar-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 28px;
+            font-weight: bold;
+          }
+      
+          button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+          }
+      
+          /* Back button */
+          .back-btn {
+            font-size: 26px;
+            padding: 8px;
+            margin-right: 15px;
+          }
+        
+          /* Responsive design */
+          @media (max-width: 768px) {
+            .navbar {
+              flex-direction: column;
+              align-items: flex-start;
+            }
+      
+            .navbar-left,
+            .navbar-right {
+              margin-bottom: 12px;
+            }
+      
+            .back-btn {
+              font-size: 24px;
+            }
+          }
+      
+          /* Add a subtle animation for the navbar */
+          @keyframes slideIn {
+            from {
+              opacity: 0;
+              transform: translateY(-20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+      
+          .navbar {
+            animation: slideIn 0.5s ease-out;
+          }
+
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: #209085;
+        }
+
+        .btn-submit:hover {
+            background-color: #28635d;
+            border-color: #0056b3;
+        }
+
+        .error-list {
+            color: red;
+        }
+
+        .animated {
+            animation-duration: 0.6s;
+            animation-name: fadeIn;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-left">
+          <a href="{% url "gallery_list" %}"><button class="back-btn">←</button></a>
+        </div>
+        <div class="navbar-center">
+            Add Image to Gallery
+        </div>
+      </nav>
+
+    <div class="container animated" style="margin-top: 10%;">
+        <div class="form-container">
+            <h1>Upload Images</h1>
+           
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="{{ form.title.id_for_label }}">Title</label>
+                    {{ form.title }}  <!-- Bootstrap class is automatically applied here -->
+                    {% if form.title.errors %}
+                        <ul class="error-list">
+                            {% for error in form.title.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.image.id_for_label }}">Image</label>
+                    {{ form.image }}  <!-- Bootstrap class is automatically applied here -->
+                    {% if form.image.errors %}
+                        <ul class="error-list">
+                            {% for error in form.image.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                
+                <button type="submit" class="btn btn-submit">Upload</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizers List</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Adding Tailwind CSS -->
+</head>
+<body class="bg-gray-100">
+
+    <!-- Organizers Section -->
+   
+
+    <!-- New Photos Section -->
+    <div class="container mx-auto px-4 py-10">
+        <h2 class="text-2xl font-semibold text-center text-gray-700 mb-8">Gallery</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105">
+                <img src="{% static 'img/fgt.jpg' %}" alt="Image 1" class="w-full h-48 object-cover rounded-lg">
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105">
+                <img src="{% static 'img/loi.jpg' %}" alt="Image 3" class="w-full h-48 object-cover rounded-lg">
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105">
+                <img src="{% static 'img/bnm.jpg' %}" alt="Image 5" class="w-full h-48 object-cover rounded-lg">
+            </div>
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden transform transition-all hover:scale-105">
+                <img src="{% static 'img/ghi.jpg' %}" alt="Image 6" class="w-full h-48 object-cover rounded-lg">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-purple-500 to-indigo-600 min-h-screen flex items-center justify-center">
+
+  <div class="bg-white shadow-xl rounded-lg p-8 w-full max-w-lg transform transition-all duration-500 hover:scale-105">
+    <h1 class="text-4xl font-bold text-center text-gray-800 mb-8">Create Your Account</h1>
+
+    <form method="POST" enctype="multipart/form-data" class="space-y-4">
+      {% csrf_token %}
+
+      <!-- Full Name -->
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+        <input type="text" name="name" id="name" class="mt-1 block w-full px-4 py-3 border rounded-lg shadow-md focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 hover:border-indigo-400 transition-all duration-300" 
+        pattern="^[A-Za-z\s]+$" title="Full Name must only contain letters and spaces." required>
+      </div>
+
+      <!-- Email Address -->
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+        <input type="email" name="email" id="email" class="mt-1 block w-full px-4 py-3 border rounded-lg shadow-md focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 hover:border-indigo-400 transition-all duration-300" 
+        required>
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="password" name="password" id="password" class="mt-1 block w-full px-4 py-3 border rounded-lg shadow-md focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 hover:border-indigo-400 transition-all duration-300" 
+        pattern="^[A-Za-z\d]{6,}$"
+ title="Password must be at least 6characters long and contain both letters and numbers." required>
+      </div>
+
+      <!-- Phone Number -->
+      <div>
+        <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
+        <input type="tel" name="phone_number" id="phone_number" class="mt-1 block w-full px-4 py-3 border rounded-lg shadow-md focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 hover:border-indigo-400 transition-all duration-300"
+        pattern="^\d{10}$" title="Phone number must be exactly 10 digits." required>
+      </div>
+
+      <!-- Age -->
+      <div>
+        <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
+        <input type="number" name="age" id="age" class="mt-1 block w-full px-4 py-3 border rounded-lg shadow-md focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 hover:border-indigo-400 transition-all duration-300" 
+        min="18" max="100" required>
+      </div>
+
+      <!-- Gender -->
+      <div>
+        <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+        <select name="gender" id="gender" class="mt-1 block w-full px-4 py-3 border rounded-lg shadow-md focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 hover:border-indigo-400 transition-all duration-300" required>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <!-- Upload Image -->
+      <div>
+        <label for="image" class="block text-sm font-medium text-gray-700">Upload Image</label>
+        <input type="file" id="image" name="image" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
+      </div>
+
+      <!-- Address -->
+      <div>
+        <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+        <textarea name="address" id="address" rows="3" class="mt-1 block w-full px-4 py-3 border rounded-lg shadow-md focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 hover:border-indigo-400 transition-all duration-300" required></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <div>
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition-all duration-300 transform hover:scale-105">Register</button>
+      </div>
+    </form>
+
+    <div class="text-center mt-6">
+      <p class="text-sm text-gray-600">Already have an account? <a href="/login/" class="text-indigo-600 hover:underline">Login</a></p>
+    </div>
+  </div>
+
+</body>
+</html>

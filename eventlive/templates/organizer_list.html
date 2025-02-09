@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #fceabb, #f8b500);
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(to right, #ff8c00, #ffa500);
+            color: white;
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            margin-top: 50px;
+            max-width: 1200px;
+        }
+
+        h2 {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #ff8c00;
+        }
+
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .table thead th {
+            background-color: #ff8c00;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.1rem;
+        }
+
+        .table tbody tr {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .table tbody tr:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .table tbody td {
+            text-align: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+        }
+
+        .btn-danger {
+            background-color: #ff4500;
+            border: none;
+            font-weight: bold;
+            padding: 8px 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease-in-out;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-danger i {
+            margin-right: 5px;
+        }
+
+        .btn-danger:hover {
+            background-color: #ff6347;
+            transform: translateY(-2px);
+            color: #fff;
+        }
+
+        .no-users {
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: white;
+            font-size: 1rem;
+            padding: 15px;
+            background: linear-gradient(to right, #ff8c00, #ffa500);
+            box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        footer .social-icons {
+            margin: 15px 0;
+        }
+
+        footer .social-icons a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        footer .social-icons a:hover {
+            color: #343a40;
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .btn-danger {
+                padding: 5px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Organizer Management System</div>
+
+    <div class="container">
+        <h2>Organizer List</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for organizer in organizers %}
+                <tr>
+                    <td>{{ organizer.name }}</td>
+                    <td>{{ organizer.email }}</td>
+                    <td>{{ organizer.phone_number }}</td>
+                    <td>
+                        {{ organizer.gender}}
+                    </td>
+                    <td>{{ organizer.age }}</td>
+                    <td>{{ organizer.address }}</td>
+                    <td>
+                        <a href="/deleteorganizer/{{ organizer.id }}" class="btn btn-danger">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center no-users">No organizer found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        &copy; 2025 Event Management System. All rights reserved.
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

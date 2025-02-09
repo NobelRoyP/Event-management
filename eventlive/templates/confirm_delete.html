@@ -1,0 +1,104 @@
+<!-- gallery/templates/gallery/confirm_delete.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Deletion</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS for additional styles and animations -->
+    <style>
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+        }
+        
+        .form-container {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .image-preview {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            width: 100%;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+
+        .btn-secondary {
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .form-group {
+            text-align: center;
+        }
+
+        .animated {
+            animation-duration: 0.6s;
+            animation-name: fadeIn;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container animated">
+        <div class="form-container">
+            <h1>Are you sure you want to delete this image?</h1>
+            <p class="text-center font-weight-bold">{{ image.title }}</p>
+            
+            <!-- Image preview -->
+            <img src="{{ image.image.url }}" alt="{{ image.title }}" class="image-preview">
+            
+            <!-- Delete Confirmation Form -->
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+            </form>
+            
+            <!-- Cancel link -->
+            <div class="form-group">
+                <a href="{% url 'gallery_list' %}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

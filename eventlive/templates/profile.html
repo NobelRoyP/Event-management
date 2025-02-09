@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .profile-header {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        .profile-details {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .profile-details h2 {
+            text-align: center;
+        }
+        .profile-details table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        .profile-details th, .profile-details td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .profile-details th {
+            background-color: #f4f4f4;
+        }
+        .profile-image img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+        .btn {
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="profile-header">
+        <h1>User Profile</h1>
+        <button onclick="window.location.href='/userhome/'" 
+    style="
+        background-color: #4CAF50; 
+        color: white; 
+        border: none; 
+        padding: 10px 20px; 
+        font-size: 16px; 
+        border-radius: 5px; 
+        cursor: pointer;
+    ">
+    Back Home
+</button>
+    </div>
+
+    <div class="profile-details">
+        <h2>Profile Information</h2>
+        <div class="profile-image">
+            {% if user.image %}
+                <img src="{{ user.image.url }}" alt="Profile Image">
+            {% else %}
+                <img src="https://via.placeholder.com/150" alt="Profile Image">
+            {% endif %}
+        </div>
+
+        <table>
+            <tr>
+                <th>Name</th>
+                <td>{{ user.name }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Phone Number</th>
+                <td>{{ user.phone_number }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{{ user.gender }}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{ user.age }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ user.address }}</td>
+            </tr>
+        </table>
+
+        <p><a href="/edit/{{user.id}}">Edit</a></p>
+    </div>
+</div>
+
+</body>
+</html>

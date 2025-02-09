@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Listings</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .whatsapp-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-icon i {
+            color: white;
+            font-size: 28px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Upcoming Events</h1>
+        <div class="row">
+            {% for event in events %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    {% if event.image %}
+                    <img src="{{ event.image.url }}" class="card-img-top" alt="{{ event.eventname }}">
+                    {% else %}
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Default Event Image">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ event.eventname }}</h5>
+                        <p class="card-text">
+                            <strong>Category:</strong> {{ event.category }}<br>
+                            <strong>Date:</strong> {{ event.eventdate }}<br>
+                            <strong>Details:</strong> {{ event.details|truncatechars:100 }}
+                        </p>
+                        <p>
+                            <strong>Registration Ends:</strong> {{ event.registerenddate }}<br>
+                            <strong>Amount:</strong> ₹{{ event.amount }}
+                        </p>
+                        <p>
+                            <p>    </p>
+                            <button>
+                                <a href="/addcart/{{ event.id }}"class="px-4 py-2 bg-blue-500 text-white text-sm font-medium rounded-md hover:bg-blue-700">
+                                    Add to Cart</a>
+                            </button>
+                        </p>
+                       
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <p class="text-center">No upcoming events found.</p>
+            </div>
+            {% endfor %}
+            <a href="https://wa.me/918593081793" target="_blank" class="whatsapp-icon" title="Chat with us on WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+    </div>
+   
+        <button onclick="window.location.href='/userhome/'" 
+    style="
+        background-color: #4CAF50; 
+        color: white; 
+        border: none; 
+        padding: 10px 20px; 
+        font-size: 16px; 
+        border-radius: 5px; 
+        cursor: pointer;
+    ">
+    Back Home
+</button>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</body>
+</body>
+</html>
+

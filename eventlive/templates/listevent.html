@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Event List</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Category</th>
+                    <th>Event Date</th>
+                    <th>Details</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in user %}
+                    <tr>
+                        <td>{{ event.eventname }}</td>
+                        <td>{{ event.category }}</td>
+                        <td>{{ event.eventdate }}</td>
+                        <td>{{ event.details }}</td>
+                        <td>
+                            <span class="badge 
+                                {% if event.status == 'approved' %}
+                                    badge-success
+                                {% elif event.status == 'pending' %}
+                                    badge-warning
+                                {% else %}
+                                    badge-danger
+                                {% endif %}
+                            ">
+                                {{ event.status|capfirst }}
+                            </span>
+                        </td>
+                        <td>
+                            {% if event.status == 'pending' %}
+                                <form method="post" action="{% url 'approve_event' event.id %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-success">Approve</button>
+                                </form>
+                            {% else %}
+                                <button class="btn btn-secondary" disabled>Approved</button>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

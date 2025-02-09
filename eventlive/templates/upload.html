@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .upload-section {
+            margin-bottom: 20px;
+        }
+        .generated-image {
+            margin-top: 20px;
+            border: 1px dashed #aaa;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload a Photo</h1>
+        <div class="upload-section">
+            <form action="/upload/" method="POST" enctype="multipart/form-data">
+                <input type="file" name="photo" accept="image/*" required>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+        <div class="generated-image" id="generated-image">
+            <p>Generated image will appear here.</p>
+        </div>
+    </div>
+</body>
+</html>
